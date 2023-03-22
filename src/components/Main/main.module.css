@@ -1,0 +1,20 @@
+.h1_main {
+  display: flex;
+  justify-content: center;
+}
+
+.products_block {
+  max-width: 85%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.product_card {
+  background-color: dodgerblue;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}

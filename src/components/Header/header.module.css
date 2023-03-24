@@ -1,0 +1,19 @@
+header {
+    background-color: rgba(81, 168, 255, 0.9);
+}
+
+.header_nav {
+    display: flex;
+    flex-direction: row;
+    margin-left: 30px;
+    margin-right: 40px;
+}
+
+.header_nav :nth-child(1) {
+    color: aqua;
+    flex-grow: 3;
+}
+
+.header_nav :nth-child(2) {
+    flex-grow: 0.2;
+}

@@ -45,10 +45,10 @@ export const Main = () => {
         <h1>Product List</h1>
         <h2>Всего товаров в каталоге: {totalNumber}</h2>
       </div>
-      <div className={styles["products_block"]}>
+      <div className={styles.products_block}>
         {itemsArray.map((product: ProductCard) => (
           <div key={product._id} className={styles["product_card"]}>
-            <div className={styles["cardimage_div"]}>
+            <div className={styles.cardimage_div}>
               <img
                 className={styles.cardimage}
                 src={product.author.avatar}

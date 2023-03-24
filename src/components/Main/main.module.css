@@ -1,6 +1,8 @@
 .h1_main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .products_block {
@@ -13,8 +15,39 @@
 }
 
 .product_card {
-  background-color: dodgerblue;
-  color: white;
+  background-color: rgba(81, 168, 255, 0.5);
+  color: rgb(50, 50, 50);
+  border-radius: 10px;
   padding: 1rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.product_card p {
+  margin: 10px;
+}
+
+.cardtext {
+  background: rgba(255, 255, 255, 0.7);
+  width: 400px;
+  max-width: 99%;
+  border-radius: 10px;
+}
+
+.cardimage_div {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cardimage {
+  max-width: 99%;
+  max-height: 99%;
 }

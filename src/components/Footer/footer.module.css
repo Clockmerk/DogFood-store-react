@@ -1,0 +1,10 @@
+footer {
+  background-color: rgba(81, 168, 255, 0.9);
+  position: relative;
+  bottom: 0;
+  left: 0;
+}
+
+.footer_section {
+  text-align: center;
+}

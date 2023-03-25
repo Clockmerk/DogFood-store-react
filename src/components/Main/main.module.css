@@ -5,6 +5,14 @@
   align-items: center;
 }
 
+.h1_copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 87vh;
+}
+
 .products_block {
   max-width: 85%;
   margin: 0 auto;

@@ -13,7 +13,7 @@ export const Catalog = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchTerm = searchParams.get("productName") || "";
   const searchTermDebounced = useDebounce(searchTerm, 500);
-  const searchHandle = (event) => {
+  const searchHandle = (event: React.ChangeEvent<HTMLInputElement>) => {
     const productName = event.target.value;
     if (productName) {
       setSearchParams({ productName });
@@ -55,7 +55,7 @@ export const Catalog = () => {
         </div>
         <div className={styles.products_block}>
           {itemsArray
-            .filter((productFilter) =>
+            .filter((productFilter: ProductCardType) =>
               productFilter.name
                 .toLowerCase()
                 .includes(searchTermDebounced.toLowerCase())

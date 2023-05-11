@@ -1,12 +1,14 @@
-import { Footer } from "./components/Footer/footer";
-import { Header } from "./components/Header/header";
-import { Main } from "./components/Main/main";
+import { Outlet } from "react-router-dom";
+import { Footer } from "./layout/Footer/footer";
+import { Header } from "./layout/Header/header";
 
 export const App = (): JSX.Element => {
   return (
     <>
       <Header />
-      <Main />
+      <main>
+        <Outlet />
+      </main>
       <Footer />
     </>
   );

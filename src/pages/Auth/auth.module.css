@@ -1,0 +1,30 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 85vh;
+  text-align: center;
+}
+
+.auth ul {
+  color: aqua;
+}
+
+.auth li {
+  background-color: rgba(81, 168, 255, 0.9);
+  list-style-type: none;
+  text-align: center;
+  margin: 5px;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.auth li:hover {
+  color: rgb(46, 46, 46);
+}
+
+.isActive {
+  color: rgb(46, 46, 46);
+  text-decoration: underline;
+}

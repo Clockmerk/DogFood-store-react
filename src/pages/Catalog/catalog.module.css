@@ -5,6 +5,11 @@
   align-items: center;
 }
 
+.h1_main input {
+  width: 400px;
+  height: 20px;
+}
+
 .h1_copy {
   display: flex;
   flex-direction: column;
@@ -16,6 +21,7 @@
 .products_block {
   max-width: 85%;
   margin: 0 auto;
+  margin-top: 20px;
   margin-bottom: 10px;
   display: grid;
   gap: 1rem;

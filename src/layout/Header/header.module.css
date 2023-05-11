@@ -1,0 +1,36 @@
+header {
+  background-color: rgba(81, 168, 255, 0.9);
+  margin-top: -16px;
+}
+
+.header_nav img {
+  max-width: 50px;
+}
+
+.header_nav {
+  margin-right: 40px;
+}
+
+.header_nav ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style-type: none;
+  gap: 20px;
+}
+
+.header_nav a {
+  text-decoration: none;
+  color: aqua;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.header_nav a:hover {
+  color: rgb(68, 68, 68);
+}
+
+.header_nav :nth-child(2) {
+  margin-left: -15px;
+  flex-grow: 3;
+}

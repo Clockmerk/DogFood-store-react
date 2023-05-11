@@ -1,0 +1,10 @@
+.user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+}
+.user img {
+  width: 80vh;
+}

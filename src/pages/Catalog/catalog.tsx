@@ -1,28 +1,21 @@
 import styles from "./catalog.module.css";
-import { ProductCardType } from "../../types/types";
 import { useQuery } from "@tanstack/react-query";
-import { fetchData } from "../../api/api/api";
-import { Link, Navigate, useSearchParams } from "react-router-dom";
+import { fetchDataSearch } from "../../api/api/api";
+import { Navigate } from "react-router-dom";
 import { useAppSelector } from "../../redux/store";
-import { useDebounce } from "../../hooks/useDebounce";
+
+import { CatalogCard } from "../../components/CatalogCard/catalogcard";
+import { Search } from "../../components/Search/search";
 
 export const Catalog = () => {
   const { token } = useAppSelector((state) => state.user);
+  const { search } = useAppSelector((state) => state.filter);
+
   if (!token) return <Navigate to="/auth" />;
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const searchTerm = searchParams.get("productName") || "";
-  const searchTermDebounced = useDebounce(searchTerm, 500);
-  const searchHandle = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const productName = event.target.value;
-    if (productName) {
-      setSearchParams({ productName });
-    } else setSearchParams({});
-  };
-
   const { isLoading, isSuccess, isError, data } = useQuery({
-    queryKey: ["productsData"],
-    queryFn: () => fetchData(token),
+    queryKey: ["productsData", search],
+    queryFn: () => fetchDataSearch(token, search),
   });
 
   if (isLoading)
@@ -40,47 +33,19 @@ export const Catalog = () => {
     );
 
   if (isSuccess) {
-    const { total: totalNumber, products: itemsArray } = data;
     return (
       <>
         <div className={styles.h1_main}>
           <h1>Каталог продуктов</h1>
-          <h2>Всего товаров в каталоге: {totalNumber}</h2>
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={searchHandle}
-            placeholder="Поиск"
-          ></input>
+          {search ? (
+            <h2>Найдено товаров по запросу: {data.length}</h2>
+          ) : (
+            <h2>Всего товаров в каталоге: {data.length}</h2>
+          )}
+          <Search />
         </div>
         <div className={styles.products_block}>
-          {itemsArray
-            .filter((productFilter: ProductCardType) =>
-              productFilter.name
-                .toLowerCase()
-                .includes(searchTermDebounced.toLowerCase())
-            )
-            .map((product: ProductCardType) => (
-              <div key={product._id} className={styles.product_card}>
-                <div className={styles.cardimage_div}>
-                  <img
-                    className={styles.cardimage}
-                    src={product.pictures}
-                    alt={"Фото " + product.name}
-                  />
-                </div>
-                <div className={styles.cardtext}>
-                  <Link to={`/product/${product._id}`}>
-                    Название: {product.name}
-                  </Link>
-                  <p>
-                    Доступность товара:
-                    {product.available ? " Доступен" : " Недоступен"}
-                  </p>
-                  <p>Цена: {product.price}</p>
-                </div>
-              </div>
-            ))}
+          <CatalogCard itemsArray={data} />
         </div>
       </>
     );

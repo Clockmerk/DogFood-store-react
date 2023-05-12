@@ -11,3 +11,7 @@ body {
   background-image: url(./assets/images/background-image/background.webp);
   background-size: cover;
 }
+
+main {
+  min-height: 82vh;
+}

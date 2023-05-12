@@ -5,6 +5,10 @@ export interface ProductsType {
   products: [];
 }
 
+export interface ProductsArrayType {
+  itemsArray: ProductCardType[];
+}
+
 interface ReviewsType {
   rating: number;
   _id: string;

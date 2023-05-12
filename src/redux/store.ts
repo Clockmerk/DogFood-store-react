@@ -2,10 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import { LC_redux, getInitialState } from "./initialState";
 import { userReducer } from "./slices/userSlice";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
+import { filterReducer } from "./slices/filterSilice";
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
+    filter: filterReducer,
   },
   preloadedState: getInitialState(),
 });

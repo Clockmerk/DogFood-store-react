@@ -14,6 +14,7 @@ import { User } from "./pages/User/user";
 import { CurrentCard } from "./components/ProductCard/productcard";
 import { Error } from "./pages/404/404";
 import { Cart } from "./pages/Cart/cart";
+import { Favorites } from "./pages/Favorites/favorites";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "user",
         element: <User />,
+      },
+      {
+        path: "favorites",
+        element: <Favorites />,
       },
       {
         path: "*",

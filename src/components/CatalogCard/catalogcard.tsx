@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
 import { ProductCardType, ProductsArrayType } from "../../types/types";
 import { useDispatch } from "react-redux";
 import { setCart } from "../../redux/slices/cartSlice";
+import { changeFavoriteStatus } from "../../redux/slices/favoritesSlices";
+import { useAppSelector } from "../../redux/store";
 
 export const CatalogCard = ({ itemsArray }: ProductsArrayType) => {
+  const favorites = useAppSelector((state) => state.favorites);
   const dispatch = useDispatch();
+
   return (
     <>
       {itemsArray.map((product: ProductCardType) => (
@@ -33,13 +37,25 @@ export const CatalogCard = ({ itemsArray }: ProductsArrayType) => {
                 </span>
               )}
             </p>
-            {product.available ? (
-              <button onClick={() => dispatch(setCart(product._id))}>
-                Добавить
+            <div className={styles.cardbuttons}>
+              {product.available ? (
+                <button onClick={() => dispatch(setCart(product._id))}>
+                  Добавить 🧺
+                </button>
+              ) : (
+                <button disabled>Товар недоступен</button>
+              )}
+              <button>👍</button>
+              <button
+                onClick={() => dispatch(changeFavoriteStatus(product._id))}
+              >
+                {favorites.find((id) => id == product._id) ? (
+                  <span>❤️</span>
+                ) : (
+                  <span>♡</span>
+                )}
               </button>
-            ) : (
-              <button disabled>Товар недоступен</button>
-            )}
+            </div>
           </div>
         </div>
       ))}

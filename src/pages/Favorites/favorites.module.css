@@ -1,0 +1,39 @@
+.head {
+    font-size: 40px;
+    text-align: center;
+}
+
+.head p {
+    margin-bottom: -10px;
+}
+
+.list {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    margin: 20px;
+}
+
+.list_card {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    border: solid;
+    padding: 10px;
+}
+.list_card * {
+    margin: 10px;
+}
+.list_card p, a {
+    font-size: 20px;
+}
+.list_card img {
+    max-width: 120px;
+}
+
+.list_card button {
+    height: 35px;
+    width: 35px;
+}

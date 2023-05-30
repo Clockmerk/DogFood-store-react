@@ -18,3 +18,7 @@
   max-width: 30%;
   margin: 10px;
 }
+
+.current_card button {
+  font-size: large;
+}

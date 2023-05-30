@@ -64,3 +64,13 @@ export const fetchProductCart = async (ids: Array<string>, token: string) => {
   );
   return cartArray;
 };
+
+export const fetchProductLike = async (productId: string, values: string) => {
+  return fetch(`${apiUrl}/products/${productId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(values),
+  });
+};

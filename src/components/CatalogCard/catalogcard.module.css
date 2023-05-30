@@ -14,10 +14,6 @@
   margin: 4px;
 }
 
-.product_card button {
-  width: 50%;
-}
-
 .cardtext {
   background: rgba(255, 255, 255, 0.7);
   height: 120px;
@@ -43,4 +39,8 @@
 .cardimage {
   max-width: 99%;
   max-height: 99%;
+}
+
+.cardbuttons * {
+  margin: 1px;
 }

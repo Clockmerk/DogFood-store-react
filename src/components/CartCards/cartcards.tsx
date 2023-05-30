@@ -11,12 +11,17 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../redux/store";
 import styles from "./cartcards.module.css";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export const CartCards = ({ itemsArray }: ProductsArrayType) => {
   const cart = useAppSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   if (!itemsArray) return null;
+
+  useEffect(() => {
+    document.title = "Корзина DogFooDStore";
+  }, []);
 
   let count = 0;
   if (cart) {

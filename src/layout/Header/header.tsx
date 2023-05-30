@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { cleanUser } from "../../redux/slices/userSlice";
 import { RootState } from "../../redux/store";
 import { clearCart } from "../../redux/slices/cartSlice";
+import { clearFavorites } from "../../redux/slices/favoritesSlices";
 
 export const Header = () => {
   const { token } = useSelector((state: RootState) => state.user);
@@ -22,6 +23,7 @@ export const Header = () => {
   const handleExit = () => {
     dispatch(cleanUser());
     dispatch(clearCart(null));
+    dispatch(clearFavorites());
     return navigate("/");
   };
 

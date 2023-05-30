@@ -4,12 +4,14 @@ import { userReducer } from "./slices/userSlice";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { filterReducer } from "./slices/filterSilice";
 import { cartReducer } from "./slices/cartSlice";
+import { favoriteReducer } from "./slices/favoritesSlices";
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     filter: filterReducer,
     cart: cartReducer,
+    favorites: favoriteReducer,
   },
   preloadedState: getInitialState(),
 });

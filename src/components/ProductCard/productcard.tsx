@@ -51,7 +51,8 @@ export const CurrentCard = () => {
               <b>{data.name}</b>
             </p>
             <p>Описание: {data.description}</p>
-            <p>Скидка: {data.discount}</p>
+            <p>Цена: {data.price}</p>
+            <p>Цена со скидкой {data.discount}% = {data.price - (data.price * data.discount)/100 }</p>
             <p>Количество в наличии: {data.stock}</p>
             <p>Продукт обновлен: {data.updated_at}</p>
           </div>

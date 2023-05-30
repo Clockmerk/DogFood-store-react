@@ -43,7 +43,7 @@ export const Header = () => {
           <li>
             {token && (
               <Link to={"/cart"}>
-                Корзина
+                🧺
                 {cart.length != 0 && (
                   <span style={{ color: "orange" }}>
                     : {cart.length}

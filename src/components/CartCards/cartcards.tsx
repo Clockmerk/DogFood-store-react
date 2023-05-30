@@ -28,9 +28,17 @@ export const CartCards = ({ itemsArray }: ProductsArrayType) => {
   let price = 0;
   if (itemsArray) {
     for (const k in itemsArray) {
+      const priceItem = itemsArray[k].price;
+      const priceDiscount = (priceItem * itemsArray[k].discount) / 100;
       const id = itemsArray[k]._id;
       const item = cart.find((k) => k._id == id);
-      if (item) price += itemsArray[k].price * item.count;
+      if (item) {
+        if (itemsArray[k].discount !== 0) {
+          price += (priceItem - priceDiscount) * item.count;
+        } else if (itemsArray[k].discount == 0) {
+          price += priceItem * item.count;
+        }
+      }
     }
   }
 
@@ -43,7 +51,20 @@ export const CartCards = ({ itemsArray }: ProductsArrayType) => {
             <Link to={`/product/${product._id}`}>
               <img src={product.pictures} />
             </Link>
-            <p>{product.price}</p>
+            <p>
+              Цена:
+              {product.discount == 0 && <span> {product.price}</span>}
+              {product.discount !== 0 && (
+                <span style={{ textDecoration: "line-through" }}>
+                  {product.price}
+                </span>
+              )}
+              {product.discount !== 0 && (
+                <span>
+                  {product.price - (product.price * product.discount) / 100}
+                </span>
+              )}
+            </p>
             <div>
               {cart.map((cartProduct) => {
                 if (cartProduct._id === product._id && cartProduct.isSelected) {

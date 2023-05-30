@@ -19,7 +19,20 @@ export const CatalogCard = ({ itemsArray }: ProductsArrayType) => {
           </div>
           <div className={styles.cardtext}>
             <Link to={`/product/${product._id}`}>{product.name}</Link>
-            <p>Цена: {product.price}</p>
+            <p>
+              Цена:
+              {product.discount == 0 && <span> {product.price}</span>}
+              {product.discount !== 0 && (
+                <span style={{ textDecoration: "line-through" }}>
+                  {product.price}
+                </span>
+              )}
+              {product.discount !== 0 && (
+                <span>
+                  {product.price - (product.price * product.discount) / 100}
+                </span>
+              )}
+            </p>
             {product.available ? (
               <button onClick={() => dispatch(setCart(product._id))}>
                 Добавить

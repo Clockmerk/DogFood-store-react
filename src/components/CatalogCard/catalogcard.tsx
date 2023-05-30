@@ -1,8 +1,11 @@
 import styles from "./catalogcard.module.css";
 import { Link } from "react-router-dom";
 import { ProductCardType, ProductsArrayType } from "../../types/types";
+import { useDispatch } from "react-redux";
+import { setCart } from "../../redux/slices/cartSlice";
 
 export const CatalogCard = ({ itemsArray }: ProductsArrayType) => {
+  const dispatch = useDispatch();
   return (
     <>
       {itemsArray.map((product: ProductCardType) => (
@@ -15,16 +18,18 @@ export const CatalogCard = ({ itemsArray }: ProductsArrayType) => {
             />
           </div>
           <div className={styles.cardtext}>
-            <Link to={`/product/${product._id}`}>Название: {product.name}</Link>
-            <p>
-              Доступность товара:
-              {product.available ? " Доступен" : " Недоступен"}
-            </p>
+            <Link to={`/product/${product._id}`}>{product.name}</Link>
             <p>Цена: {product.price}</p>
+            {product.available ? (
+              <button onClick={() => dispatch(setCart(product._id))}>
+                Добавить
+              </button>
+            ) : (
+              <button disabled>Товар недоступен</button>
+            )}
           </div>
         </div>
       ))}
-      ;
     </>
   );
 };

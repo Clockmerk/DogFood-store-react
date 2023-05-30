@@ -1,14 +1,20 @@
-.product_card {
+.current_card_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.current_card {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 85vh;
   font-size: larger;
+  padding-top: 9vh;
+  max-width: 90%;
 }
 
-.product_card img {
-  width: 70vh;
+.current_card img {
   max-width: 30%;
   margin: 10px;
 }

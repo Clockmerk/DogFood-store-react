@@ -5,7 +5,8 @@ import { useMutation } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import { setUpUser } from "../../redux/slices/userSlice";
 import { ValuesSignInType } from "../../types/types";
-import { signInFetch } from "../../api/api/api";
+import { signInFetch } from "../../api/user";
+import { useChangeInputType } from "../../hooks/useChangeInputType";
 
 const signInSchema = Yup.object().shape({
   email: Yup.string().email("Некорректный email").required("Required"),
@@ -13,6 +14,7 @@ const signInSchema = Yup.object().shape({
 });
 
 export const SignIn = () => {
+  const { inputType, changeType } = useChangeInputType();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -33,7 +35,6 @@ export const SignIn = () => {
   });
 
   const onSubmit = async (values: ValuesSignInType) => {
-    // Типизировать any
     const responce = await mutateAsync(values);
     dispatch(setUpUser({ ...responce.data, token: responce.token }));
     return navigate("/catalog");
@@ -49,8 +50,13 @@ export const SignIn = () => {
       >
         <Form>
           <Field name="email" placeholder="example@mail.ru" type="email" />
-          <Field name="password" placeholder="Пароль" type="password" />
-          <button type="submit">Войти</button>
+          <Field name="password" placeholder="Пароль" type={inputType} />
+          <button type="button" onClick={changeType}>
+            👁
+          </button>
+          <button style={{ marginTop: "10px" }} type="submit">
+            Войти
+          </button>
           <p>Если вы не зарегистрированы, зарегистрируйтесь.</p>
         </Form>
       </Formik>

@@ -7,7 +7,7 @@ export const App = (): JSX.Element => {
   return (
     <>
       <Header />
-      <main className="main">
+      <main>
         <Outlet />
       </main>
       <Footer />

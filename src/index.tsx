@@ -13,6 +13,7 @@ import { Auth } from "./pages/Auth/auth";
 import { User } from "./pages/User/user";
 import { CurrentCard } from "./components/ProductCard/productcard";
 import { Error } from "./pages/404/404";
+import { Cart } from "./pages/Cart/cart";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "catalog",
         element: <Catalog />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
       },
       {
         path: "product/:productId",

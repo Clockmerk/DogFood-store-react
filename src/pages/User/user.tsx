@@ -1,10 +1,14 @@
 import styles from "./user.module.css";
 import { useAppSelector } from "../../redux/store";
 import { Navigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export const User = () => {
   const user = useAppSelector((state) => state.user);
   if (!user.token) return <Navigate to="/auth" />;
+  useEffect(() => {
+    document.title = "Страница пользователя DogFooDStore";
+  }, []);
 
   return (
     <div className={styles.user}>

@@ -1,17 +1,22 @@
 import styles from "./catalog.module.css";
 import { useQuery } from "@tanstack/react-query";
-import { fetchDataSearch } from "../../api/api/api";
+import { fetchDataSearch } from "../../api/products";
 import { Navigate } from "react-router-dom";
 import { useAppSelector } from "../../redux/store";
 
 import { CatalogCard } from "../../components/CatalogCard/catalogcard";
 import { Search } from "../../components/Search/search";
+import { useEffect } from "react";
 
 export const Catalog = () => {
   const { token } = useAppSelector((state) => state.user);
   const { search } = useAppSelector((state) => state.filter);
 
   if (!token) return <Navigate to="/auth" />;
+
+  useEffect(() => {
+    document.title = "Каталог DogFooDStore";
+  }, []);
 
   const { isLoading, isSuccess, isError, data } = useQuery({
     queryKey: ["productsData", search],
@@ -42,7 +47,9 @@ export const Catalog = () => {
           ) : (
             <h2>Всего товаров в каталоге: {data.length}</h2>
           )}
-          <Search />
+          <div className={styles.search}>
+            <Search />
+          </div>
         </div>
         <div className={styles.products_block}>
           <CatalogCard itemsArray={data} />

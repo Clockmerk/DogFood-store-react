@@ -56,8 +56,9 @@ interface FilterReduxType {
 }
 
 interface CartReduxType {
-  id: string;
+  _id: string;
   count: number;
+  isSelected: boolean;
 }
 
 export interface InitialStateReduxType {
@@ -76,8 +77,11 @@ export type ValuesSignUpType = {
   email: string;
   password: string;
   group: string;
+  name: string;
+  about: string;
+  avatar: string;
 };
 
 export interface SignUpProps {
-  activeTab: Dispatch<SetStateAction<string>>;
+  activeTab: Dispatch<SetStateAction<number>>;
 }

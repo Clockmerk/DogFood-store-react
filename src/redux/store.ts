@@ -3,11 +3,13 @@ import { LC_redux, getInitialState } from "./initialState";
 import { userReducer } from "./slices/userSlice";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { filterReducer } from "./slices/filterSilice";
+import { cartReducer } from "./slices/cartSlice";
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     filter: filterReducer,
+    cart: cartReducer,
   },
   preloadedState: getInitialState(),
 });

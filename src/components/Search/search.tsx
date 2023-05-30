@@ -8,7 +8,7 @@ export const Search = () => {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const searchTerm = searchParams.get("productName") || "";
-  const searchTermDebounced = useDebounce(searchTerm, 500);
+  const searchTermDebounced = useDebounce(searchTerm);
 
   useEffect(() => {
     dispatch(setSearch(searchTermDebounced));
@@ -21,11 +21,14 @@ export const Search = () => {
     } else setSearchParams({});
   };
   return (
-    <input
-      type="text"
-      value={searchTerm}
-      onChange={searchHandle}
-      placeholder="Поиск продукта"
-    ></input>
+    <>
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={searchHandle}
+        placeholder="Поиск продукта"
+      ></input>
+      <button onClick={() => setSearchParams({})}>X</button>
+    </>
   );
 };

@@ -11,14 +11,23 @@
 }
 
 .product_card p {
-  margin: 10px;
+  margin: 4px;
+}
+
+.product_card button {
+  width: 50%;
 }
 
 .cardtext {
   background: rgba(255, 255, 255, 0.7);
+  height: 120px;
   width: 400px;
   max-width: 99%;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .cardimage_div {

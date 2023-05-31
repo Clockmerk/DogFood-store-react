@@ -15,6 +15,9 @@ import { CurrentCard } from "./components/ProductCard/productcard";
 import { Error } from "./pages/404/404";
 import { Cart } from "./pages/Cart/cart";
 import { Favorites } from "./pages/Favorites/favorites";
+import { AddProduct } from "./pages/AddProduct/addproduct";
+import { Settings } from "./pages/Settings/settings";
+import { Orders } from "./pages/Orders/orders";
 
 const router = createBrowserRouter([
   {
@@ -34,8 +37,16 @@ const router = createBrowserRouter([
         element: <Cart />,
       },
       {
+        path: "orders",
+        element: <Orders />,
+      },
+      {
         path: "product/:productId",
         element: <CurrentCard />,
+      },
+      {
+        path: "/addProduct",
+        element: <AddProduct />,
       },
       {
         path: "auth",
@@ -44,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "user",
         element: <User />,
+      },
+      {
+        path: "settings",
+        element: <Settings />,
       },
       {
         path: "favorites",

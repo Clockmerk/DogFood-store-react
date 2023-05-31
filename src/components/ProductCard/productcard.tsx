@@ -2,14 +2,14 @@
 import styles from "./productcard.module.css";
 import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { fetchProduct } from "../../api/products";
+import { fetchProduct, fetchProductLike } from "../../api/products";
 import { useAppSelector } from "../../redux/store";
 import { useDispatch } from "react-redux";
 import { setCart } from "../../redux/slices/cartSlice";
 import { changeFavoriteStatus } from "../../redux/slices/favoritesSlices";
 
 export const CurrentCard = () => {
-  const { token } = useAppSelector((state) => state.user);
+  const { token, _id } = useAppSelector((state) => state.user);
   const { productId } = useParams();
   const favorites = useAppSelector((state) => state.favorites);
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ export const CurrentCard = () => {
 
   if (!productId) return null;
 
-  const { isSuccess, data } = useQuery({
+  const { isSuccess, data, refetch } = useQuery({
     queryKey: ["productData"],
     queryFn: () => fetchProduct(productId, token),
   });
@@ -34,6 +34,17 @@ export const CurrentCard = () => {
     );
   }
 
+  const likes = data?.likes;
+  const isLiked = likes?.find((likeToken) => likeToken === _id);
+  const submitLike = (id: string) => {
+    if (isLiked === undefined) {
+      fetchProductLike(id, token, "PUT");
+      refetch();
+    } else {
+      fetchProductLike(id, token, "DELETE");
+      refetch();
+    }
+  };
   if (isSuccess) {
     document.title = `${data.name} DogFooDStore`;
     return (
@@ -60,8 +71,16 @@ export const CurrentCard = () => {
           ) : (
             <button disabled>Товар недоступен</button>
           )}
-          <button onClick={()=> dispatch(changeFavoriteStatus(data._id))}>{favorites.find(id => id == data._id) ? <span>❤️</span> : <span>♡</span> }</button>
-          <button>👍🖒</button>
+          <button onClick={() => dispatch(changeFavoriteStatus(data._id))}>
+            {favorites.find((id) => id == data._id) ? (
+              <span>❤️</span>
+            ) : (
+              <span>♡</span>
+            )}
+          </button>
+          <button onClick={() => submitLike(data._id)}>
+            {isLiked === undefined ? <span>🖒</span> : <span>👍</span>}
+          </button>
         </div>
       </div>
     );

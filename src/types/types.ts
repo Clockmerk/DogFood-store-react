@@ -85,3 +85,13 @@ export type ValuesSignUpType = {
 export interface SignUpProps {
   activeTab: Dispatch<SetStateAction<number>>;
 }
+
+export interface AddProductType {
+  name: string;
+  price: number;
+  wight: string;
+  discount: number;
+  stock: number;
+  description: string;
+  pictures: string;
+}

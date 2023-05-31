@@ -1,4 +1,4 @@
-import { ProductCardType } from "../types/types";
+import { AddProductType, ProductCardType } from "../types/types";
 
 export const apiUrl = "https://api.react-learning.ru";
 
@@ -65,12 +65,28 @@ export const fetchProductCart = async (ids: Array<string>, token: string) => {
   return cartArray;
 };
 
-export const fetchProductLike = async (productId: string, values: string) => {
-  return fetch(`${apiUrl}/products/${productId}`, {
+export const fetchAddProduct = async (
+  token: string,
+  values: AddProductType
+) => {
+  return fetch(`${apiUrl}/products`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(values),
+  });
+};
+
+export const fetchProductLike = async (
+  productId: string,
+  token: string,
+  method: string
+) => {
+  return fetch(`${apiUrl}/products/likes/${productId}`, {
+    method: method,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
 };

@@ -28,11 +28,13 @@ export const CatalogCard = ({ itemsArray }: ProductsArrayType) => {
               {product.discount == 0 && <span> {product.price}</span>}
               {product.discount !== 0 && (
                 <span style={{ textDecoration: "line-through" }}>
+                  {" "}
                   {product.price}
                 </span>
               )}
               {product.discount !== 0 && (
                 <span>
+                  {" "}
                   {product.price - (product.price * product.discount) / 100}
                 </span>
               )}
@@ -45,7 +47,6 @@ export const CatalogCard = ({ itemsArray }: ProductsArrayType) => {
               ) : (
                 <button disabled>Товар недоступен</button>
               )}
-              <button>👍</button>
               <button
                 onClick={() => dispatch(changeFavoriteStatus(product._id))}
               >

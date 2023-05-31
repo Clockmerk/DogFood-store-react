@@ -12,6 +12,7 @@ export const CatalogCard = ({ itemsArray }: ProductsArrayType) => {
   const dispatch = useDispatch();
 
   let sorting;
+
   switch (sort) {
     case "POPULAR_LIKES":
       sorting = (a: ProductCardType, b: ProductCardType) => {
@@ -33,8 +34,12 @@ export const CatalogCard = ({ itemsArray }: ProductsArrayType) => {
         return b.discount - a.discount;
       };
       break;
-    default:
-      sorting;
+    case "":
+      sorting = (a: ProductCardType, b: ProductCardType) => {
+        const aTime = new Date(a.created_at);
+        const bTime = new Date(b.created_at);
+        return aTime.getTime() - bTime.getTime();
+      };
       break;
   }
 

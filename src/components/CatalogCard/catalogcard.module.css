@@ -26,6 +26,14 @@
   align-items: center;
 }
 
+.cardtext a {
+  overflow: hidden;
+}
+
+.cardname a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .cardimage_div {
   width: 250px;
   height: 250px;

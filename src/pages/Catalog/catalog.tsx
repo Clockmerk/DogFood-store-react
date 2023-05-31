@@ -7,6 +7,7 @@ import { useAppSelector } from "../../redux/store";
 import { CatalogCard } from "../../components/CatalogCard/catalogcard";
 import { Search } from "../../components/Search/search";
 import { useEffect } from "react";
+import { SortBy } from "../../components/SortBy/sortby";
 
 export const Catalog = () => {
   const { token } = useAppSelector((state) => state.user);
@@ -49,6 +50,7 @@ export const Catalog = () => {
           )}
           <div className={styles.search}>
             <Search />
+            <SortBy />
           </div>
         </div>
         <div className={styles.products_block}>

@@ -6,6 +6,7 @@ export const initialState: InitialStateReduxType = {
   user: {} as AuthorType,
   filter: {
     search: "",
+    sort: "",
   },
   cart: [],
   favorites: [],

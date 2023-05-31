@@ -20,6 +20,7 @@ export const Search = () => {
       setSearchParams({ productName });
     } else setSearchParams({});
   };
+
   return (
     <>
       <input

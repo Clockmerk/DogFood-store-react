@@ -1,15 +1,16 @@
-import { Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { signUpFetch } from "../../api/user";
 import { useMutation } from "@tanstack/react-query";
 import { SignUpProps, ValuesSignUpType } from "../../types/types";
 import { useChangeInputType } from "../../hooks/useChangeInputType";
+import styles from "./signup.module.css";
 
 const signInSchema = Yup.object().shape({
-  email: Yup.string().email("Некорректный email").required("Required"),
-  name: Yup.string().required("Required"),
-  password: Yup.string().required("Required"),
-  group: Yup.string().required("Required"),
+  email: Yup.string().email("Некорректный email").required("Введите почту"),
+  name: Yup.string().required("Заполните имя"),
+  password: Yup.string().required("Введите пароль"),
+  group: Yup.string().required("Введите группу"),
 });
 
 export const SignUp = ({ activeTab }: SignUpProps) => {
@@ -49,13 +50,31 @@ export const SignUp = ({ activeTab }: SignUpProps) => {
         onSubmit={onSubmit}
         validationSchema={signInSchema}
       >
-        <Form>
+        <Form className={styles.form}>
           <Field name="name" placeholder="Ваше имя" type="text" />
-          <Field name="email" placeholder="example@mail.ru" type="email" />
-          <Field name="password" placeholder="Пароль" type={inputType} />
-          <button type="button" onClick={changeType}>
-            👁
-          </button>
+          <ErrorMessage className={styles.error} component="span" name="name" />
+          <Field name="email" placeholder="Example@mail.ru" type="email" />
+          <ErrorMessage
+            className={styles.error}
+            component="span"
+            name="email"
+          />
+          <div>
+            <Field
+              name="password"
+              placeholder="Пароль"
+              type={inputType}
+              style={{ marginRight: "-10px" }}
+            />
+            <button type="button" onClick={changeType}>
+              👁
+            </button>
+          </div>
+          <ErrorMessage
+            className={styles.error}
+            component="span"
+            name="password"
+          />
           <Field name="group" as="select">
             <option value="group-9">gr-9</option>
             <option value="group-10">group-10</option>

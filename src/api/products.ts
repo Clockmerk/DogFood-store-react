@@ -79,6 +79,15 @@ export const fetchAddProduct = async (
   });
 };
 
+export const fetchDeleteProduct = async (id: string, token: string) => {
+  return fetch(`${apiUrl}/products/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
 export const fetchProductLike = async (
   productId: string,
   token: string,

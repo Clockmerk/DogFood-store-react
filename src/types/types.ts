@@ -53,6 +53,7 @@ export interface ProductCardType {
 
 interface FilterReduxType {
   search: string;
+  sort: string;
 }
 
 interface CartReduxType {

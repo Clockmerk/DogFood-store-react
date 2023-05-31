@@ -8,11 +8,39 @@ import { useAppSelector } from "../../redux/store";
 
 export const CatalogCard = ({ itemsArray }: ProductsArrayType) => {
   const favorites = useAppSelector((state) => state.favorites);
+  const { sort } = useAppSelector((state) => state.filter);
   const dispatch = useDispatch();
+
+  let sorting;
+  switch (sort) {
+    case "POPULAR_LIKES":
+      sorting = (a: ProductCardType, b: ProductCardType) => {
+        return b.likes.length - a.likes.length;
+      };
+      break;
+    case "LOW_PRICE":
+      sorting = (a: ProductCardType, b: ProductCardType) => {
+        return a.price - b.price;
+      };
+      break;
+    case "HIGH_PRICE":
+      sorting = (a: ProductCardType, b: ProductCardType) => {
+        return b.price - a.price;
+      };
+      break;
+    case "HIGH_DISCOUNT":
+      sorting = (a: ProductCardType, b: ProductCardType) => {
+        return b.discount - a.discount;
+      };
+      break;
+    default:
+      sorting;
+      break;
+  }
 
   return (
     <>
-      {itemsArray.map((product: ProductCardType) => (
+      {itemsArray.sort(sorting).map((product: ProductCardType) => (
         <div key={product._id} className={styles.product_card}>
           <div className={styles.cardimage_div}>
             <img

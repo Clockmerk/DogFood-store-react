@@ -1,0 +1,10 @@
+.sort {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+.sort * {
+    margin: 5px;
+}

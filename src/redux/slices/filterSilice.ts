@@ -8,8 +8,11 @@ export const filterSlice = createSlice({
     setSearch: (state, action) => {
       state.search = action.payload;
     },
+    setSort: (state, action) => {
+      state.sort = action.payload;
+    },
   },
 });
 
-export const { setSearch } = filterSlice.actions;
+export const { setSearch, setSort } = filterSlice.actions;
 export const filterReducer = filterSlice.reducer;

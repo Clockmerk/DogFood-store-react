@@ -1,8 +1,12 @@
 /* eslint-disable prettier/prettier */
 import styles from "./productcard.module.css";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { fetchProduct, fetchProductLike } from "../../api/products";
+import {
+  fetchDeleteProduct,
+  fetchProduct,
+  fetchProductLike,
+} from "../../api/products";
 import { useAppSelector } from "../../redux/store";
 import { useDispatch } from "react-redux";
 import { setCart } from "../../redux/slices/cartSlice";
@@ -13,6 +17,7 @@ export const CurrentCard = () => {
   const { productId } = useParams();
   const favorites = useAppSelector((state) => state.favorites);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   if (!token) return <Navigate to="/auth" />;
 
@@ -36,14 +41,24 @@ export const CurrentCard = () => {
 
   const likes = data?.likes;
   const isLiked = likes?.find((likeToken) => likeToken === _id);
-  const submitLike = (id: string) => {
+  const submitLike = async (id: string) => {
     if (isLiked === undefined) {
-      fetchProductLike(id, token, "PUT");
+      await fetchProductLike(id, token, "PUT");
       refetch();
     } else {
-      fetchProductLike(id, token, "DELETE");
+      await fetchProductLike(id, token, "DELETE");
       refetch();
     }
+  };
+  const submitDelete = async (id: string) => {
+    const res = await fetchDeleteProduct(id, token);
+    const responce = await res.json();
+    if (res.ok) {
+      alert("Продукт удален");
+      navigate("/catalog");
+      return;
+    }
+    alert(responce.message);
   };
   if (isSuccess) {
     document.title = `${data.name} DogFooDStore`;
@@ -81,6 +96,11 @@ export const CurrentCard = () => {
           <button onClick={() => submitLike(data._id)}>
             {isLiked === undefined ? <span>🖒</span> : <span>👍</span>}
           </button>
+          {data.author._id === _id ? (
+            <button onClick={() => submitDelete(data._id)}>
+              Удалить ваш товар
+            </button>
+          ) : null}
         </div>
       </div>
     );

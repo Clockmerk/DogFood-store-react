@@ -17,7 +17,10 @@ export const Search = () => {
   const searchHandle = (event: React.ChangeEvent<HTMLInputElement>) => {
     const productName = event.target.value;
     if (productName) {
-      setSearchParams({ productName });
+      setSearchParams((searchParams) => {
+        searchParams.set("productName", productName);
+        return searchParams;
+      });
     } else setSearchParams({});
   };
 

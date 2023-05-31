@@ -13,7 +13,10 @@ export const SortBy = () => {
     const sortBy = event.target.value;
 
     if (sortBy) {
-      setSearchParams({ ...searchParams, sortBy });
+      setSearchParams((searchParams) => {
+        searchParams.set("sortBy", sortBy);
+        return searchParams;
+      });
     } else setSearchParams({});
   };
 

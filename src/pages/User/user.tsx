@@ -21,18 +21,17 @@ export const User = () => {
             Информация о пользователе с <b>id {user._id}</b>
           </p>
           <img src={user.avatar}></img>
-          <p>
-            <span>{user.about} </span>
-            {user.name}
-          </p>
-          <p>{user.email}</p>
-          <p>{user.group}</p>
+          <p>Имя: {user.name}</p>
+          <p>О вас: {user.about}</p>
+          <p>email: {user.email}</p>
+          <p>Группа: {user.group}</p>
         </div>
       </div>
       <div className={styles.user_tabs}>
         <Link to={"/favorites"}>
           Избранное {favorites.length == 0 ? null : favorites.length}
         </Link>
+
         <Link to={"/settings"}>Настройки</Link>
         <Link to={"/orders"}>Ваши заказы</Link>
         <Link to={"/addProduct"}>Добавить свой товар</Link>

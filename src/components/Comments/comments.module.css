@@ -1,0 +1,28 @@
+.comments {
+    text-align: center;
+}
+
+.reviews p {
+  font-size: large;
+}
+
+.reviews * {
+  margin: 5px;
+}
+
+.reviews_card {
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+  border: 1px solid;
+  height: auto;
+}
+
+.error {
+  color: red;
+}
+.form_comment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

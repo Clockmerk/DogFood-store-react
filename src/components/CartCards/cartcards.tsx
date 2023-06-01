@@ -47,6 +47,25 @@ export const CartCards = ({ itemsArray }: ProductsArrayType) => {
     }
   }
 
+  let priceSelected = 0;
+  if (itemsArray) {
+    for (const k in itemsArray) {
+      const priceItem = itemsArray[k].price;
+      const priceDiscount = (priceItem * itemsArray[k].discount) / 100;
+      const id = itemsArray[k]._id;
+      const item = cart.find((k) => k._id == id);
+      const selected = cart.find((k) => k.isSelected === true);
+
+      if (item) {
+        if (itemsArray[k].discount !== 0 && selected?._id === id) {
+          priceSelected += (priceItem - priceDiscount) * item.count;
+        } else if (itemsArray[k].discount == 0 && selected?._id === id) {
+          priceSelected += priceItem * item.count;
+        }
+      }
+    }
+  }
+
   return (
     <div className={styles.cart}>
       <div className={styles.cart_container}>
@@ -116,7 +135,8 @@ export const CartCards = ({ itemsArray }: ProductsArrayType) => {
       </div>
       <div className={styles.cart_buy}>
         Продуктов в корзине {itemsArray.length} <b>Всего: {count}</b>
-        <b>Цена за все: {price}</b>
+        <p>Цена за все: {price}</p>
+        <b>Цена за выбранное: {priceSelected}</b>
         <button onClick={() => dispatch(buyFromCart(null))}>Заказать</button>
         <button onClick={() => dispatch(clearCart(null))}>
           Очистить корзину

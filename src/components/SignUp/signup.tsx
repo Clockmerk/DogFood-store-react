@@ -53,7 +53,11 @@ export const SignUp = ({ activeTab }: SignUpProps) => {
         <Form className={styles.form}>
           <Field name="name" placeholder="Ваше имя" type="text" />
           <ErrorMessage className={styles.error} component="span" name="name" />
-          <Field name="email" placeholder="Example@mail.ru" type="email" />
+          <Field
+            name="email"
+            placeholder="Почта example@mail.ru"
+            type="email"
+          />
           <ErrorMessage
             className={styles.error}
             component="span"
@@ -64,7 +68,7 @@ export const SignUp = ({ activeTab }: SignUpProps) => {
               name="password"
               placeholder="Пароль"
               type={inputType}
-              style={{ marginRight: "-10px" }}
+              style={{ marginRight: "-10px", marginLeft: "28px" }}
             />
             <button type="button" onClick={changeType}>
               👁

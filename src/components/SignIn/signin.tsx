@@ -61,7 +61,7 @@ export const SignIn = () => {
               name="password"
               placeholder="Пароль"
               type={inputType}
-              style={{ marginRight: "-10px" }}
+              style={{ marginRight: "-10px", marginLeft: "28px" }}
             />
             <button type="button" onClick={changeType}>
               👁

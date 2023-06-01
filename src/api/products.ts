@@ -1,4 +1,8 @@
-import { AddProductType, ProductCardType } from "../types/types";
+import {
+  AddProductType,
+  ProductCardType,
+  ReviewsCommentType,
+} from "../types/types";
 
 export const apiUrl = "https://api.react-learning.ru";
 
@@ -95,6 +99,34 @@ export const fetchProductLike = async (
 ) => {
   return fetch(`${apiUrl}/products/likes/${productId}`, {
     method: method,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const fetchAddComment = async (
+  id: string,
+  token: string,
+  values: ReviewsCommentType
+) => {
+  return fetch(`${apiUrl}/products/review/${id}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(values),
+  });
+};
+
+export const fetchDeleteComment = async (
+  id: string,
+  token: string,
+  reviewId: string
+) => {
+  return fetch(`${apiUrl}/products/review/${id}/${reviewId}`, {
+    method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
     },

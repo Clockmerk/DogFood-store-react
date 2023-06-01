@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import styles from "./productcard.module.css";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
@@ -11,6 +10,7 @@ import { useAppSelector } from "../../redux/store";
 import { useDispatch } from "react-redux";
 import { setCart } from "../../redux/slices/cartSlice";
 import { changeFavoriteStatus } from "../../redux/slices/favoritesSlices";
+import { Comments } from "../Comments/comments";
 
 export const CurrentCard = () => {
   const { token, _id } = useAppSelector((state) => state.user);
@@ -38,6 +38,8 @@ export const CurrentCard = () => {
       </div>
     );
   }
+
+  //TODO: переместить в компонент и дописать useMutation
 
   const likes = data?.likes;
   const isLiked = likes?.find((likeToken) => likeToken === _id);
@@ -72,10 +74,12 @@ export const CurrentCard = () => {
             </p>
             <p>Описание: {data.description}</p>
             <p>Цена: {data.price}</p>
-            <p>
-              Цена со скидкой {data.discount}% ={" "}
-              <b>{data.price - (data.price * data.discount) / 100}</b>
-            </p>
+            {data.discount !== 0 && (
+              <p>
+                Цена со скидкой {data.discount}% ={" "}
+                <b>{data.price - (data.price * data.discount) / 100}</b>
+              </p>
+            )}
             <p>Количество в наличии: {data.stock}</p>
             <p>Продукт обновлен: {data.updated_at}</p>
           </div>
@@ -102,6 +106,7 @@ export const CurrentCard = () => {
             </button>
           ) : null}
         </div>
+        <Comments {...data} />
       </div>
     );
   }

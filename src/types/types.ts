@@ -9,15 +9,23 @@ export interface ProductsArrayType {
   itemsArray: ProductCardType[];
 }
 
+export interface ReviewsArrayType {
+  reviews: ReviewsType[];
+}
 interface ReviewsType {
   rating: number;
   _id: string;
   text: string;
-  author: string;
+  author: AuthorType;
   product: string;
   created_at: string;
   updated_at: string;
   __v: number;
+}
+
+export interface ReviewsCommentType {
+  rating: number;
+  text: string;
 }
 
 export interface AuthorType {
@@ -86,6 +94,15 @@ export type ValuesSignUpType = {
 export interface SignUpProps {
   activeTab: Dispatch<SetStateAction<number>>;
 }
+
+export type ValuesUpdateUserType = {
+  name: string;
+  about: string;
+};
+
+export type ValuesUpdateAvatarType = {
+  avatar: string;
+};
 
 export interface AddProductType {
   name: string;

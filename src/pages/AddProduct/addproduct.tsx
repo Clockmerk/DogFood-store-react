@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { fetchAddProduct } from "../../api/products";
 import { AddProductType } from "../../types/types";
 import styles from "./addproduct.module.css";
+import { Navigate } from "react-router-dom";
 
 const addProductSchema = Yup.object().shape({
   name: Yup.string().required("Название обязательно"),
@@ -27,6 +28,8 @@ const addProductSchema = Yup.object().shape({
 
 export const AddProduct = () => {
   const { token } = useAppSelector((state) => state.user);
+
+  if (!token) return <Navigate to="/auth" />;
 
   const initialValues: AddProductType = {
     name: "",

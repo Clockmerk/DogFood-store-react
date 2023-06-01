@@ -31,10 +31,7 @@ export const CurrentCard = () => {
   if (isSuccess && !data.name) {
     return (
       <div className={styles.current_card}>
-        <p>
-          Такого продукта не существует. Либо на сервере произошла ошибка,
-          повторите запрос позже
-        </p>
+        <p>Такого продукта не существует. Либо он был удален.</p>
       </div>
     );
   }

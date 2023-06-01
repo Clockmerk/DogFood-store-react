@@ -41,16 +41,13 @@ export const Comments = (data: ProductCardType) => {
   };
   return (
     <div className={styles.reviews}>
-      <p className={styles.comments}>
-        <b>Комментарии к продукту: </b>
-      </p>
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
         validationSchema={commentSchema}
       >
         <Form className={styles.form_comment}>
-          <label htmlFor="text">Комментарий:</label>
+          <label htmlFor="text">Добавить комментарий:</label>
           <Field name="text" id="text" as="textarea" />
           <ErrorMessage className={styles.error} component="span" name="text" />
           <label htmlFor="rating">Рейтинг</label>
@@ -71,6 +68,9 @@ export const Comments = (data: ProductCardType) => {
           </div>
         </Form>
       </Formik>
+      <p className={styles.comments}>
+        <b>Комментарии к продукту: </b>
+      </p>
       {reviews?.map((review) => (
         <div key={review._id} className={styles.reviews_card}>
           <div>
